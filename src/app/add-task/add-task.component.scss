@@ -1,0 +1,42 @@
+.add-task-container{
+  display: flex;
+  gap: 100px;
+}
+
+/* Define keyframes for fading in and out */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Apply animation to element with hide/show class */
+.hide {
+  animation-name: fade-out;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.show {
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+#clear-icon:hover{
+  cursor: pointer;
+}

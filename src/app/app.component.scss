@@ -1,0 +1,36 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  gap: 50px;
+
+
+  .menu-bar-container{
+    width: 100%;
+  }
+
+  .body-contianer
+  {
+    // border: 1px solid red;
+    margin-left: 20%;
+    margin-right: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .add-task-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    // border: 1px solid cyan;
+    justify-content: space-around;
+  }
+
+  .table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

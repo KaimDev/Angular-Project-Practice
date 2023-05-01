@@ -1,0 +1,17 @@
+<div [class]="hidden ? 'add-task-container show' : 'add-task-container hide'" *ngIf="hidden">
+
+  <div class="p-inputgroup">
+    <input pInputText
+    placeholder="Task"
+    (input)="OnChanged($event)"
+    [(ngModel)]="inputText"/>
+
+    <span class="p-inputgroup-addon" id="clear-icon" (click)="clear()">
+
+      <i class="pi pi-times"></i>
+
+    </span>
+
+  </div>
+
+</div>
