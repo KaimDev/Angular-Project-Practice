@@ -4,6 +4,8 @@ import { TableViewComponent } from './table-view.component';
 import { TableModule } from 'primeng/table';
 import { TaskRespositoryService } from '../service/task-respository.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    CheckboxModule,
+    FormsModule
   ],
   exports: [
     TableViewComponent
