@@ -1,6 +1,6 @@
-export interface Task
+export interface ITask
 {
   id: number;
   name: string;
-  state: string;
+  state: boolean;
 }
