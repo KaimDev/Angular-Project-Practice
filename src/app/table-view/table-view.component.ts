@@ -14,6 +14,7 @@ export class TableViewComponent
   task_array: ITask[] = []; // Initialize an array of tasks that will be displayed
   database: ITask[] = []; // Initialize an array of tasks that will be used as the database
   @Input() inputTask: string = ""; // Receive a search string from another component
+  @Input() receiveTask: ITask | undefined;
 
   constructor(private task_repository: TaskRespositoryService) {}
 
@@ -25,7 +26,8 @@ export class TableViewComponent
     })
   }
 
-  onCheckboxChange(id: number): void
+  // Method to be executed when a checkbox is clicked
+  onCheckboxChange(id: string): void
   {
     const new_task: ITask | undefined = this.task_array.find((t) => t.id == id);
 
@@ -53,5 +55,16 @@ export class TableViewComponent
     {
       this.task_array = this.database;
     }
+
+    if (this.receiveTask != undefined)
+    {
+      this.database.push(this.receiveTask);
+      // this.udpateViewTable();
+    }
+  }
+
+  udpateViewTable(): void
+  {
+    this.task_array = this.database;
   }
 }

@@ -14,12 +14,14 @@
   <div class="add-task-container">
     <app-add-task [hidden]="addTaskButton"
                   [saveTask]="saveTask"
-                  (ButtonState)="OnButtonState($event)">
+                  (ButtonState)="OnButtonState($event)"
+                  [receivedNotification]="notificationToSend"
+                  (newTask)="receiveTasks($event)">
     </app-add-task>
   </div>
 
   <div class="table-container">
-    <app-table-view [inputTask]="returnedTask"></app-table-view>
+    <app-table-view [inputTask]="returnedTask" [receiveTask]="receivedTask"></app-table-view>
   </div>
 
   <p-toast key="AddedTask"></p-toast>

@@ -1,5 +1,6 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, EventEmitter, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { ITask } from './task/task';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ export class AppComponent {
   ButtonState: string = "New Task";
   styleName: string = "";
   returnedTask: string = "";
+  notificationToSend: number = 0;
+  receivedTask: ITask | undefined;
 
   constructor(private changeDetector: ChangeDetectorRef,
               private messageService: MessageService) {}
@@ -27,13 +30,18 @@ export class AppComponent {
     if (this.ButtonState === "Save Task")
     {
       this.saveTask = true;
+      this.notificationToSend = 1;
       this.showMessage();
     }
+
+    setTimeout(() =>{
+      this.notificationToSend = 0;
+    }, 100);
 
     this.addTaskButton = !this.addTaskButton;
   }
 
-  OnButtonState(event: string)
+  OnButtonState(event: string): void
   {
     this.ButtonState = event;
 
@@ -53,8 +61,14 @@ export class AppComponent {
     this.changeDetector.detectChanges();
   }
 
-  searchValue(value: string)
+  searchValue(value: string): void
   {
     this.returnedTask = value;
+  }
+
+  receiveTasks(event: ITask): void
+  {
+    this.receivedTask = event;
+    this.changeDetector.detectChanges();
   }
 }

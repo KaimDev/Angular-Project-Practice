@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { v4 as uuidv4, v4 } from 'uuid';
+
+import { ITask } from '../task/task';
+
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -9,8 +13,10 @@ export class AddTaskComponent
 {
   @Input() hidden: boolean = false;
   @Input() saveTask: boolean = false;
+  @Input() receivedNotification: number | undefined;
 
   @Output() ButtonState: EventEmitter<string> = new EventEmitter();
+  @Output() newTask: EventEmitter<ITask> = new EventEmitter();
 
   kindButtonState =
   {
@@ -47,6 +53,21 @@ export class AddTaskComponent
     else
     {
       this.ButtonState.emit(this.kindButtonState.new);
+    }
+
+    if (this.receivedNotification)
+    {
+      const tempTask: ITask =
+      {
+        id: v4(),
+        name: this.inputText,
+        state: false
+      }
+      this.newTask.emit(tempTask);
+    }
+    else
+    {
+      this.newTask.emit(undefined);
     }
 
     //Save Task
