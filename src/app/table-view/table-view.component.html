@@ -11,6 +11,7 @@
       <td>
         <p-checkbox [binary]="true"
                     inputId="binary"
+                    [(ngModel)]="task.state"
                     (onChange)="onCheckboxChange(task.id)">
         </p-checkbox>
       </td>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TaskRespositoryService } from 'src/app/service/task-respository.service';
 import { ITask } from '../task/task';
 
@@ -11,15 +11,17 @@ import { ITask } from '../task/task';
 )
 export class TableViewComponent
 {
-  task_array: ITask[] = [];
+  task_array: ITask[] = []; // Initialize an array of tasks that will be displayed
+  database: ITask[] = []; // Initialize an array of tasks that will be used as the database
+  @Input() inputTask: string = ""; // Receive a search string from another component
 
   constructor(private task_repository: TaskRespositoryService) {}
 
   ngOnInit(): void
   {
     this.task_repository.getTasks().subscribe({
-      next: (tasks: ITask[]) => this.task_array = tasks,
-      complete: () => console.log("Finish")
+      next: (tasks: ITask[]) => this.database = tasks,
+      complete: () => this.task_array = this.database
     })
   }
 
@@ -29,9 +31,27 @@ export class TableViewComponent
 
     if (new_task)
     {
-      const index = this.task_array.indexOf(new_task);
+      const index_table: number = this.task_array.indexOf(new_task!);
+      this.task_array[index_table].state = !this.task_array[index_table].state;
+
+      const index_db = this.database.indexOf(new_task);
       new_task.state = !new_task.state;
-      this.task_array[index] = new_task;
+      this.database[index_db] = new_task;
+    }
+  }
+
+  ngOnChanges(): void
+  {
+    if (this.inputTask.length)
+    {
+      this.inputTask = this.inputTask.toLocaleLowerCase();
+
+      this.task_array = this.database.filter((task: ITask) =>
+      task.name.toLocaleLowerCase().includes(this.inputTask));
+    }
+    else
+    {
+      this.task_array = this.database;
     }
   }
 }

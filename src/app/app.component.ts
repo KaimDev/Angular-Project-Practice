@@ -12,8 +12,7 @@ export class AppComponent {
   saveTask = false;
   ButtonState: string = "New Task";
   styleName: string = "";
-
-  // messages: Message[] = [];
+  returnedTask: string = "";
 
   constructor(private changeDetector: ChangeDetectorRef,
               private messageService: MessageService) {}
@@ -52,5 +51,10 @@ export class AppComponent {
     }
 
     this.changeDetector.detectChanges();
+  }
+
+  searchValue(value: string)
+  {
+    this.returnedTask = value;
   }
 }

@@ -1,5 +1,5 @@
 <div class="menu-bar-container">
-  <app-menu-bar></app-menu-bar>
+  <app-menu-bar (returnValue)="searchValue($event)"></app-menu-bar>
 </div>
 
 <div class="body-contianer">
@@ -19,12 +19,8 @@
   </div>
 
   <div class="table-container">
-    <app-table-view></app-table-view>
+    <app-table-view [inputTask]="returnedTask"></app-table-view>
   </div>
 
-  <!-- <p-messages [(value)]="messages"
-              [enableService]="false"
-              [closable]="false">
-  </p-messages> -->
   <p-toast key="AddedTask"></p-toast>
 </div>

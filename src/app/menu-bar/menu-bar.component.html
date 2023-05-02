@@ -1,7 +1,7 @@
 <p>Angular Project</p>
 
 
-<span class="p-input-icon-left">
-  <i class="pi pi-search"></i>
-  <input type="text" pInputText/>
+<span class="p-input-icon-right">
+  <i class={{iconChange}} (click)="iconClick()"></i>
+  <input [(ngModel)]="searchValue" type="text" (input)="onInputChange()" pInputText/>
 </span>

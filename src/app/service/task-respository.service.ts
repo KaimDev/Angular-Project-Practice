@@ -16,7 +16,6 @@ export class TaskRespositoryService {
   {
     return this.http.get<ITask[]>(this.url)
     .pipe(
-      tap(task => console.log(task)),
       catchError(this.handleError)
     )
   }

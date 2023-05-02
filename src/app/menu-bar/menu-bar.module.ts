@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuBarComponent } from './menu-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { InputTextModule } from 'primeng/inputtext';
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    InputTextModule
+    InputTextModule,
+    FormsModule
   ],
   exports: [
     MenuBarComponent

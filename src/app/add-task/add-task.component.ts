@@ -27,16 +27,14 @@ export class AddTaskComponent
   {
     const inputValue = (event.target as HTMLInputElement).value;
 
-    if (inputValue.length == 0)
+    if (!inputValue.length)
     {
       this.ButtonState.emit(this.kindButtonState.cancel);
     }
-    else if (inputValue.length > 0)
+    else
     {
       this.ButtonState.emit(this.kindButtonState.save);
     }
-
-    console.log(this.inputText);
   }
 
   //Detects when the Inputs is being changed.
